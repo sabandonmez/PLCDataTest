@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLCDataTestApp", "PLCDataTestApp\PLCDataTestApp.csproj", "{7A469EF4-248A-45F3-A3A5-3AD86FC9E754}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{C936AC87-502F-44E2-BD74-E7E930FF85BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories", "Repositories\Repositories.csproj", "{D225CAEA-ACDC-4D7C-B3C1-CAB46FF3BD24}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A469EF4-248A-45F3-A3A5-3AD86FC9E754}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A469EF4-248A-45F3-A3A5-3AD86FC9E754}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A469EF4-248A-45F3-A3A5-3AD86FC9E754}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A469EF4-248A-45F3-A3A5-3AD86FC9E754}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C936AC87-502F-44E2-BD74-E7E930FF85BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C936AC87-502F-44E2-BD74-E7E930FF85BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C936AC87-502F-44E2-BD74-E7E930FF85BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C936AC87-502F-44E2-BD74-E7E930FF85BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D225CAEA-ACDC-4D7C-B3C1-CAB46FF3BD24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D225CAEA-ACDC-4D7C-B3C1-CAB46FF3BD24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D225CAEA-ACDC-4D7C-B3C1-CAB46FF3BD24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D225CAEA-ACDC-4D7C-B3C1-CAB46FF3BD24}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -13,11 +13,11 @@
     </div>
     <div class="form-group">
         <label asp-for="Port">Port:</label>
-        <input id="Port" name="Port" type="number" class="form-control" value="@Model.Port" required />
+        <input id="Port" name="Port" type="number" class="form-control" value="502" required />
     </div>
     <div class="form-group">
         <label asp-for="SlaveId">Slave ID:</label>
-        <input id="SlaveId" name="SlaveId" type="number" class="form-control" value="@Model.SlaveId" required min="1"
+        <input id="SlaveId" name="SlaveId" type="number" class="form-control" value="1" required min="1"
             max="247" />
     </div>
     <div class="form-group">
@@ -68,7 +68,7 @@
         <input id="ReadValue" name="ReadValue" type="text" class="form-control" value="@Model.ReadValue" readonly />
     </div>
     <div class="form-group mt-3">
-        <button type="submit" class="btn btn-danger">Kop</button>
+        <button type="button" id="connectButton" class="btn btn-danger" onclick="toggleConnection()">Bağlan</button>
         <button type="submit" class="btn btn-primary">Oku</button>
         <button type="submit" class="btn btn-secondary">Yaz</button>
         <button type="submit" class="btn btn-info">Toplu Okuma</button>
@@ -76,3 +76,22 @@
         <button type="submit" class="btn btn-warning">Test</button>
     </div>
 </form>
+
+<script>
+    function toggleConnection() {
+        var connectButton = document.getElementById('connectButton');
+
+        if (connectButton.classList.contains('btn-danger')) {
+            connectButton.classList.remove('btn-danger');
+            connectButton.classList.add('btn-success');
+            connectButton.textContent = 'Kop';
+        } else {
+            connectButton.classList.remove('btn-success');
+            connectButton.classList.add('btn-danger');
+            connectButton.textContent = 'Bağlan';
+        }
+    }
+</script>
+
+
+

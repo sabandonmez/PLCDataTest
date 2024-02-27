@@ -7,8 +7,11 @@ namespace PLCDataTestApp.Controllers
     {
     public IActionResult Index()
     {
-        var model = new ModbusOperationModel();
-        return View(model); 
+       var model = new ModbusOperationModel
+            {
+                Connection = true 
+            };
+            return View(model);
     }
 
     [HttpPost]
@@ -18,3 +21,4 @@ namespace PLCDataTestApp.Controllers
     }
     }
 }
+

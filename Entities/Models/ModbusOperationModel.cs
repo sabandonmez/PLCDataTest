@@ -11,5 +11,6 @@ namespace Entities.Models
         public ushort DataSize { get; set; } // Veri boyutu
         public string WriteValue { get; set; } // Yazma işlemi için kullanılacak değer
         public string ReadValue { get; set; } // Okuma işlemi sonucunda döndürülecek değer
+        public bool Connection{get;set;}
     }
 }

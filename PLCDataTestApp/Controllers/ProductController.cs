@@ -2,28 +2,30 @@ using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
+using Repositories.Contracts;
+using Services.Contracts;
 
 namespace PLCDataTestApp.Controllers
 {
     public class ProductController :Controller
     {
-        private readonly RepositoryContext _context;
+        private readonly IServiceManager _manger;
 
-        public ProductController(RepositoryContext context)
+        public ProductController(IServiceManager manger)
         {
-            _context = context;
+            _manger = manger;
         }
 
         public IActionResult Index()
         {
-            var model = _context.Products.ToList();
+            var model = _manger.ProductService.GetAllProduct(false);
             return View(model);
         }
 
-        public IActionResult Get(int id)
+        public IActionResult Get([FromRoute(Name="id")] int id)
         {
-            Product product = _context.Products.FirstOrDefault(p=>p.ProductId.Equals(id));
-            return View(product);
+            var model = _manger.ProductService.GetOneProduct(id,false);
+            return View(model);
         }
     }
 }

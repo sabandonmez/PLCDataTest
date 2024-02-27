@@ -1,0 +1,53 @@
+@model ModbusOperationModel
+
+@{
+    ViewData["Title"] = "Modbus Veri Okuma Testi";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-controller="Modbus" asp-action="Index" method="post">
+    <div>
+        <label for="IpAddress">IP Adresi:</label>
+        <input id="IpAddress" name="IpAddress" type="text" value="@Model.IpAddress" />
+    </div>
+    <div>
+        <label for="Port">Port:</label>
+        <input id="Port" name="Port" type="number" value="@Model.Port" />
+    </div>
+    <div>
+        <label for="SlaveId">Slave ID:</label>
+        <input id="SlaveId" name="SlaveId" type="text" value="@Model.SlaveId" />
+    </div>
+    <div>
+        <label for="DataAddress">Veri Adresi:</label>
+        <input id="DataAddress" name="DataAddress" type="text" value="@Model.DataAddress" />
+    </div>
+    <div>
+        <label for="DataSize">Veri Boyutu:</label>
+        <input id="DataSize" name="DataSize" type="number" value="@Model.DataSize" />
+    </div>
+    <div>
+        <label for="DataType">Veri Tipi:</label>
+        <select id="DataType" name="DataType">
+            <option value="Integer" selected>@Model.DataType</option>
+        </select>
+    </div>
+    <div>
+        <label for="DataSorting">Veri Sıralaması:</label>
+        <select id="DataSorting" name="DataSorting">
+            <option value="LowHigh" selected>@Model.DataSorting</option>
+        </select>
+    </div>
+    <div>
+        <label for="WriteValue">Yazma Değeri:</label>
+        <input id="WriteValue" name="WriteValue" type="text" value="@Model.WriteValue" />
+    </div>
+    <div>
+        <input type="submit" value="Oku" />
+        <input type="submit" value="Yaz" />
+        <input type="submit" value="Toplu Okuma" />
+        <input type="submit" value="Toplu Yazma" />
+        <input type="submit" value="Test" />
+    </div>
+</form>

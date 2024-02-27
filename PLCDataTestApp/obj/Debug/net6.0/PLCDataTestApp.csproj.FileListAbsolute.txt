@@ -59,3 +59,6 @@ C:\Users\erend\OneDrive\Belgeler\PLC\PLCDataTest\PLCDataTestApp\bin\Debug\net6.0
 C:\Users\erend\OneDrive\Belgeler\PLC\PLCDataTest\PLCDataTestApp\bin\Debug\net6.0\Entities.pdb
 C:\Users\erend\OneDrive\Belgeler\PLC\PLCDataTest\PLCDataTestApp\bin\Debug\net6.0\Repositories.dll
 C:\Users\erend\OneDrive\Belgeler\PLC\PLCDataTest\PLCDataTestApp\bin\Debug\net6.0\Repositories.pdb
+C:\Users\erend\OneDrive\Belgeler\PLC\PLCDataTest\PLCDataTestApp\obj\Debug\net6.0\PLCDataTestApp.sourcelink.json
+C:\Users\erend\OneDrive\Belgeler\PLC\PLCDataTest\PLCDataTestApp\bin\Debug\net6.0\Services.dll
+C:\Users\erend\OneDrive\Belgeler\PLC\PLCDataTest\PLCDataTestApp\bin\Debug\net6.0\Services.pdb

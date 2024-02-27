@@ -4,5 +4,7 @@ namespace Services.Contracts
     {
         IProductService ProductService {get;}
         ICategoryService CategoryService {get;}
+
+        IMobusOperationModelService MobusOperationModelService {get;}
     }
 }

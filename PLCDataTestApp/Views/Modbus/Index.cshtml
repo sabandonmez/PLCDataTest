@@ -6,48 +6,73 @@
 
 <h2>@ViewData["Title"]</h2>
 
-<form asp-controller="Modbus" asp-action="Index" method="post">
-    <div>
-        <label for="IpAddress">IP Adresi:</label>
-        <input id="IpAddress" name="IpAddress" type="text" value="@Model.IpAddress" />
+<form asp-controller="Modbus" asp-action="Index" method="post" class="needs-validation" novalidate>
+    <div class="form-group">
+        <label asp-for="IpAddress">IP Adresi:</label>
+        <input id="IpAddress" name="IpAddress" type="text" class="form-control" value="@Model.IpAddress" required />
     </div>
-    <div>
-        <label for="Port">Port:</label>
-        <input id="Port" name="Port" type="number" value="@Model.Port" />
+    <div class="form-group">
+        <label asp-for="Port">Port:</label>
+        <input id="Port" name="Port" type="number" class="form-control" value="@Model.Port" required />
     </div>
-    <div>
-        <label for="SlaveId">Slave ID:</label>
-        <input id="SlaveId" name="SlaveId" type="text" value="@Model.SlaveId" />
+    <div class="form-group">
+        <label asp-for="SlaveId">Slave ID:</label>
+        <input id="SlaveId" name="SlaveId" type="number" class="form-control" value="@Model.SlaveId" required min="1"
+            max="247" />
     </div>
-    <div>
-        <label for="DataAddress">Veri Adresi:</label>
-        <input id="DataAddress" name="DataAddress" type="text" value="@Model.DataAddress" />
+    <div class="form-group">
+        <label asp-for="DataAddress">Veri Adresi:</label>
+        <input id="DataAddress" name="DataAddress" type="number" class="form-control" value="@Model.DataAddress"
+            required />
     </div>
-    <div>
-        <label for="DataSize">Veri Boyutu:</label>
-        <input id="DataSize" name="DataSize" type="number" value="@Model.DataSize" />
-    </div>
-    <div>
-        <label for="DataType">Veri Tipi:</label>
-        <select id="DataType" name="DataType">
-            <option value="Integer" selected>@Model.DataType</option>
+
+    <div class="form-group">
+        <label asp-for="DataSize">Veri Boyutu:</label>
+        <select id="DataSize" name="DataSize" class="form-control">
+            <option value="1">1</option> //Bit
+            <option value="8">8</option> //Byte
+            <option value="16">16</option> //Word/Integer
+            <option value="32">32</option> //DWord/Float/Long
+            <option value="64">64</option> //Double
         </select>
     </div>
-    <div>
-        <label for="DataSorting">Veri Sıralaması:</label>
-        <select id="DataSorting" name="DataSorting">
-            <option value="LowHigh" selected>@Model.DataSorting</option>
+
+    <div class="form-group">
+        <label asp-for="DataType">Veri Tipi:</label>
+        <select id="DataType" name="DataType" class="form-control">
+            <option value="Bit" selected>Bit</option>
+            <option value="Byte" selected>Byte</option>
+            <option value="Integer" selected>Integer</option>
+            <option value="DWord" selected>DWord</option>
+            <option value="Long" selected>Long</option>
+            <option value="Float" selected>Float</option>
+            <option value="Double" selected>Double</option>
+            <option value="String" selected>String</option>
         </select>
     </div>
-    <div>
-        <label for="WriteValue">Yazma Değeri:</label>
-        <input id="WriteValue" name="WriteValue" type="text" value="@Model.WriteValue" />
+    <div class="form-group">
+        <label asp-for="DataSorting">Veri Sıralaması:</label>
+        <select id="DataSorting" name="DataSorting" class="form-control">
+            <option value="LowHigh" selected>LowHigh</option>
+            <option value="HighLow" selected>HighLow</option>
+        </select>
     </div>
-    <div>
-        <input type="submit" value="Oku" />
-        <input type="submit" value="Yaz" />
-        <input type="submit" value="Toplu Okuma" />
-        <input type="submit" value="Toplu Yazma" />
-        <input type="submit" value="Test" />
+    <div class="form-group">
+        <label asp-for="WriteValue">Yazma Değeri:</label>
+        <input id="WriteValue" name="WriteValue" type="text" class="form-control" value="@Model.WriteValue" required />
+        <div class="invalid-feedback">Lütfen yazma değerini giriniz.</div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ReadValue">Okuma Değeri:</label>
+        <input id="ReadValue" name="ReadValue" type="text" class="form-control" value="@Model.ReadValue" readonly />
+    </div>
+    <div class="form-group mt-3">
+        <button type="submit" class="btn btn-danger">Kop</button>
+        <button type="submit" class="btn btn-primary">Oku</button>
+        <button type="submit" class="btn btn-secondary">Yaz</button>
+        <button type="submit" class="btn btn-info">Toplu Okuma</button>
+        <button type="submit" class="btn btn-success">Toplu Yazma</button>
+        <button type="submit" class="btn btn-warning">Test</button>
     </div>
 </form>

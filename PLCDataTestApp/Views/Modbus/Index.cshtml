@@ -81,29 +81,44 @@
     <script>
    document.addEventListener("DOMContentLoaded", function () {
     var connectButton = document.getElementById('connectButton');
-    var isConnected = false; // Bağlantı durumunu takip eden değişken
+    var isConnected = false;
 
-    // toggleConnection fonksiyonunun tanımı
-   function toggleConnection() {
-    var connectButton = document.getElementById('connectButton');
-    if (isConnected) {
-        console.log('Bağlantı kesildi.');
-        isConnected = false;
-        connectButton.textContent = 'Bağlan';
-        connectButton.classList.remove('btn-success');
-        connectButton.classList.add('btn-danger');
-    } else {
-        console.log('Bağlandınız.');
-        isConnected = true;
-        connectButton.textContent = 'Kop';
-        connectButton.classList.remove('btn-danger');
-        connectButton.classList.add('btn-success');
+    function setFormInputsEnabled(enabled) {
+
+        var inputs = document.querySelectorAll('#DataAddress, #DataSize, #DataType, #DataSorting, #WriteValue');
+        inputs.forEach(function(input) {
+            input.disabled = !enabled; 
+        });
+
+        var connectionInputs = document.querySelectorAll('#IpAddress, #Port, #SlaveId');
+        connectionInputs.forEach(function(input) {
+            if (enabled) {
+                input.classList.add('bg-success', 'text-white');
+            } else {
+                input.classList.remove('bg-success', 'text-white');
+            }
+        });
     }
-}
 
-    // Bağlan/Kop butonuna tıklama olayı
+    function toggleConnection(shouldConnect) {
+        if (shouldConnect) {
+            console.log('Bağlandınız.');
+            isConnected = true;
+            connectButton.textContent = 'Kop';
+            connectButton.classList.remove('btn-danger');
+            connectButton.classList.add('btn-success');
+            setFormInputsEnabled(true);
+        } else {
+            console.log('Bağlantı kesildi.');
+            isConnected = false;
+            connectButton.textContent = 'Bağlan';
+            connectButton.classList.remove('btn-success');
+            connectButton.classList.add('btn-danger');
+            setFormInputsEnabled(false); 
+        }
+    }
+
     connectButton.addEventListener('click', function () {
-        // Bağlan butonuna tıklandığında
         if (!isConnected) {
             var ipAddress = document.getElementById('IpAddress').value;
             var port = document.getElementById('Port').value;
@@ -119,22 +134,19 @@
             })
                 .then(response => response.json())
                 .then(data => {
-                    if (data === true) {
-                        toggleConnection(); // Bağlantı başarılı, durumu güncelle
-                    } else {
-                        console.error('Bağlanamadınız: ' + (data.message || 'Bilinmeyen hata'));
-                    }
+                    toggleConnection(data === true); 
                 })
                 .catch(error => {
                     console.error('Hata:', error);
+                    toggleConnection(false);
                 });
         } else {
-            // Kop butonuna tıklandığında
-            toggleConnection(); // Bağlantı durumunu manuel olarak değiştir
+            toggleConnection(false); 
         }
     });
-});
 
+    setFormInputsEnabled(false);
+});
 
 </script>
 

@@ -68,7 +68,7 @@
         <input id="ReadValue" name="ReadValue" type="text" class="form-control" value="@Model.ReadValue" readonly />
     </div>
     <div class="form-group mt-3">
-        <button type="button" id="connectButton" class="btn btn-danger" onclick="toggleConnection()">Bağlan</button>
+        <button type="button" id="connectButton" class="btn btn-danger">Bağlan</button>
         <button type="submit" class="btn btn-primary">Oku</button>
         <button type="submit" class="btn btn-secondary">Yaz</button>
         <button type="submit" class="btn btn-info">Toplu Okuma</button>
@@ -77,21 +77,68 @@
     </div>
 </form>
 
-<script>
-    function toggleConnection() {
-        var connectButton = document.getElementById('connectButton');
 
-        if (connectButton.classList.contains('btn-danger')) {
-            connectButton.classList.remove('btn-danger');
-            connectButton.classList.add('btn-success');
-            connectButton.textContent = 'Kop';
-        } else {
-            connectButton.classList.remove('btn-success');
-            connectButton.classList.add('btn-danger');
-            connectButton.textContent = 'Bağlan';
-        }
+    <script>
+   document.addEventListener("DOMContentLoaded", function () {
+    var connectButton = document.getElementById('connectButton');
+    var isConnected = false; // Bağlantı durumunu takip eden değişken
+
+    // toggleConnection fonksiyonunun tanımı
+   function toggleConnection() {
+    var connectButton = document.getElementById('connectButton');
+    if (isConnected) {
+        console.log('Bağlantı kesildi.');
+        isConnected = false;
+        connectButton.textContent = 'Bağlan';
+        connectButton.classList.remove('btn-success');
+        connectButton.classList.add('btn-danger');
+    } else {
+        console.log('Bağlandınız.');
+        isConnected = true;
+        connectButton.textContent = 'Kop';
+        connectButton.classList.remove('btn-danger');
+        connectButton.classList.add('btn-success');
     }
+}
+
+    // Bağlan/Kop butonuna tıklama olayı
+    connectButton.addEventListener('click', function () {
+        // Bağlan butonuna tıklandığında
+        if (!isConnected) {
+            var ipAddress = document.getElementById('IpAddress').value;
+            var port = document.getElementById('Port').value;
+            var slaveId = document.getElementById('SlaveId').value;
+
+            fetch('/Modbus/Index', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'RequestVerificationToken': document.getElementsByName('__RequestVerificationToken')[0].value
+                },
+                body: `IpAddress=${encodeURIComponent(ipAddress)}&Port=${encodeURIComponent(port)}&SlaveId=${encodeURIComponent(slaveId)}`
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data === true) {
+                        toggleConnection(); // Bağlantı başarılı, durumu güncelle
+                    } else {
+                        console.error('Bağlanamadınız: ' + (data.message || 'Bilinmeyen hata'));
+                    }
+                })
+                .catch(error => {
+                    console.error('Hata:', error);
+                });
+        } else {
+            // Kop butonuna tıklandığında
+            toggleConnection(); // Bağlantı durumunu manuel olarak değiştir
+        }
+    });
+});
+
+
 </script>
+
+
 
 
 
